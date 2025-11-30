@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Trello – Task Board</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Task Board (Mini-Trello)</h1>
+    <div class="controls">
+      <input id="searchInput" type="text" placeholder="Search by title or tags..." />
+      <select id="priorityFilter">
+        <option value="">All priorities</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <button id="addTaskBtn">+ New Task</button>
+    </div>
+  </header>
+
+  <!-- Task Form (used for create & update) -->
+  <section class="task-form" id="taskFormSection">
+    <h2 id="formTitle">Create Task</h2>
+    <form id="taskForm">
+      <input type="hidden" id="taskId" />
+
+      <label>
+        Title
+        <input type="text" id="titleInput" required />
+      </label>
+
+      <label>
+        Description
+        <textarea id="descInput" rows="2"></textarea>
+      </label>
+
+      <label>
+        Priority
+        <select id="priorityInput">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </label>
+
+      <label>
+        Tags (comma separated)
+        <input type="text" id="tagsInput" placeholder="frontend, bug, feature" />
+      </label>
+
+      <label>
+        Due Date
+        <input type="date" id="dueDateInput" />
+      </label>
+
+      <label>
+        Status
+        <select id="statusInput">
+          <option value="TODO">Todo</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="DONE">Done</option>
+        </select>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit">Save</button>
+        <button type="button" id="cancelEditBtn">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Board -->
+  <main class="board">
+    <div class="column" data-status="TODO">
+      <h2>Todo</h2>
+      <div class="column-body" id="col-todo"></div>
+    </div>
+
+    <div class="column" data-status="IN_PROGRESS">
+      <h2>In Progress</h2>
+      <div class="column-body" id="col-inprogress"></div>
+    </div>
+
+    <div class="column" data-status="DONE">
+      <h2>Done</h2>
+      <div class="column-body" id="col-done"></div>
+    </div>
+  </main>
+
+  <!-- Trash (Soft Deleted Tasks) -->
+  <section class="trash-section">
+    <div class="trash-header">
+      <h2>Trash (Soft Deleted)</h2>
+      <button id="emptyTrashBtn">Empty Trash</button>
+    </div>
+    <div id="trashBody" class="trash-body"></div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
